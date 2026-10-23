@@ -2,9 +2,34 @@ import { Body, Controller, Get, Headers, HttpCode, Param, Patch, Post, UsePipes,
 import { CreateUserDto } from '../dto/create-user.dto.js';
 import { whitelist } from 'validator';
 import { userHeaderDta } from '../dto/header.dto.js';
+import { PipsService } from '../users/pips/pips.service.js';
+
 
 @Controller('users')
 export class UsersController {
+
+    constructor( private pipsService : PipsService){ }
+
+    @Get('all')
+    findAllUser(){
+       return this.pipsService.findAll();
+    }
+
+    @Get(':id')
+    findOneUser(@Param('id') id : string){
+        return this.pipsService.findOne(id);
+    }
+
+    @Post('create')
+    createUser(@Body() data : CreateUserDto) : Promise<void> {
+        return this.pipsService.create(data);
+    }
+
+    @Patch(':id')
+    updateUser(@Param('id') id : string , @Body() data : CreateUserDto) :  Promise<void> {
+        return this.pipsService.update(id , data);
+    }
+
     @Get()
     gettheuse(){
         return "this is a All user"
@@ -24,12 +49,12 @@ export class UsersController {
     
     @Post('user')
     @HttpCode(301)
-    createUser(@Body(new ValidationPipe({whitelist : true , forbidNonWhitelisted : true})) data: CreateUserDto): CreateUserDto {
+    createUser34568(@Body(new ValidationPipe({whitelist : true , forbidNonWhitelisted : true})) data: CreateUserDto): CreateUserDto {
     return data;
     }
 
     @Patch(':id')
-    updateUser(@Param('id') id: string, @Headers() headers: userHeaderDta): userHeaderDta {
+    updateUser234567(@Param('id') id: string, @Headers() headers: userHeaderDta): userHeaderDta {
         return headers;
     }
 }
