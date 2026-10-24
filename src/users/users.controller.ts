@@ -10,6 +10,7 @@ export class UsersController {
 
     constructor( private pipsService : PipsService){ }
 
+    //this to get request
     @Get('all')
     findAllUser(){
        return this.pipsService.findAll();
