@@ -3,7 +3,8 @@ import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { UsersModule } from './users/users.module.js';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { pgConfig } from './dvConfig.js'
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
 @Module({
@@ -15,7 +16,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       appSecret: 'YOUR_APP_SECRET',
       serviceId: 'NEST',
     }),
-    UsersModule,
+    UsersModule, TypeOrmModule.forRoot(pgConfig)
   ],
   controllers: [AppController],
   providers: [AppService],
