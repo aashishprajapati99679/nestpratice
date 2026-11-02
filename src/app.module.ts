@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module.js';
 import { User } from './user/entity/user.entity.js';
+import { Profile } from './user/entity/profile.entity.js';
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
 
@@ -20,7 +21,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         username : configService.get('DB_USERNAME'),
         password : configService.get('DB_PASSWORD'),
         database : configService.get('DB_DATABASE'),
-        entities : [User],
+        entities : [User , Profile],
         synchronize : true,
         autoLoadEntities: true,
 
