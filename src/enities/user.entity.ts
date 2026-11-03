@@ -1,0 +1,27 @@
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Property } from "./property.entity.js";
+
+@Entity()
+export class User {
+    @PrimaryGeneratedColumn()
+    id : number;
+
+    @Column()
+    firstName : string;
+
+    @Column()
+    lastName : string;
+
+    @Column()
+    avatarUrl : string;
+
+    @CreateDateColumn()
+    createdAt : Date;
+
+    @OneToMany(()=> Property , (property) => property.user)
+    properties : Property[];
+
+    @ManyToMany(()=> Property , (property) => property.likedByUsers)
+    @JoinTable({ name : 'user_liked_properties'})
+    likeProperty : Property[]; 
+}
