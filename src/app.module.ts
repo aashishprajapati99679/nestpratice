@@ -8,6 +8,7 @@ import { pgConfig } from './config/dbConfig.js';
 import { Property } from './enities/property.entity.js';
 import { User } from './enities/user.entity.js';
 import { PropertyFeature } from './enities/propertyFeature.entity.js';
+import { PropertyType } from './enities/propertyType.entity.js';
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
 
@@ -43,7 +44,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         url: configService.get<string>('DB_URL'),
-        entities: [Property , PropertyFeature , User],
+        entities: [Property , PropertyFeature , User , PropertyType],
         synchronize: true,
       }),
     }),
