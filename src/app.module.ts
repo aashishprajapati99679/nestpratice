@@ -9,29 +9,12 @@ import { Property } from './enities/property.entity.js';
 import { User } from './enities/user.entity.js';
 import { PropertyFeature } from './enities/propertyFeature.entity.js';
 import { PropertyType } from './enities/propertyType.entity.js';
+import { PropertyModule } from './property/property.module.js';
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
 
 @Module({
-  // imports: [
-  //   ConfigModule.forRoot(),TypeOrmModule.forRootAsync({
-  //     imports: [ConfigModule],
-  //     useFactory: (configService : ConfigService) =>({
-  //       type : 'postgres',
-  //       host : configService.get('DB_HOST'), 
-  //       port : configService.get('DB_PORT'),
-  //       username : configService.get('DB_USERNAME'),
-  //       password : configService.get('DB_PASSWORD'),
-  //       database : configService.get('DB_DATABASE'),
-  //       entities : [User , Profile],
-  //       synchronize : true,
-  //       autoLoadEntities: true,
 
-
-  //     }),
-  //     inject : [ConfigService]
-  //   }), UserModule,
-  // ],
    imports: [
     ConfigModule.forRoot({
       isGlobal: true,
@@ -48,6 +31,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         synchronize: true,
       }),
     }),
+
+    PropertyModule,
   ], controllers: [AppController],
   providers: [AppService],
 })
