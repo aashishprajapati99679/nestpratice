@@ -10,6 +10,7 @@ import { User } from './enities/user.entity.js';
 import { PropertyFeature } from './enities/propertyFeature.entity.js';
 import { PropertyType } from './enities/propertyType.entity.js';
 import { PropertyModule } from './property/property.module.js';
+import { UserModule } from './user/user.module.js';
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
 
@@ -33,6 +34,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
 
     PropertyModule,
+
+    UserModule,
   ], controllers: [AppController],
   providers: [AppService],
 })
