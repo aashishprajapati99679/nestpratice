@@ -1,6 +1,7 @@
 import { PropertyType } from '../enities/propertyType.entity.js';
 import { Property } from '../enities/property.entity.js';
 import { User } from '../enities/user.entity.js';
+import { PropertyFeature } from '../enities/propertyFeature.entity.js';
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { faker } from '@faker-js/faker/locale/zh_TW';
@@ -27,14 +28,15 @@ export class MainSeeder implements Seeder {
         const users = await userFactory.saveMany(10);
 
         // Seed Properties
-        const propertyFactory = factoryManager.get(Property);
+    const propertyFactory = factoryManager.get(Property);
+    const propertyFeatureFactory = factoryManager.get(PropertyFeature);
 
         const properties = await Promise.all(
             Array(50).fill('').map(async () => {
                 const property = await propertyFactory.make({
                     user: faker.helpers.arrayElement(users),
                     type : faker.helpers.arrayElement(propertyTypes),
-                    propertyFeature: await PropertyFeatureFactory.save(),
+                    propertyFeature: await propertyFeatureFactory.save(),
                 });
 
                 return property;

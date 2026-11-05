@@ -8,15 +8,16 @@
 //     synchronize : true,
 //     autoLoadEntities: true,
 // }
-
+import "dotenv/config";
 import { DataSourceOptions } from 'typeorm';
 import { Property } from '../enities/property.entity.js';
-
+import { PropertyFeature } from "../enities/propertyFeature.entity.js";
+import { User } from "../enities/user.entity.js";
+import { PropertyType } from "../enities/propertyType.entity.js";
+console.log('DB URL loaded:', !!process.env.DB_URL);
 export const pgConfig: DataSourceOptions = {
-  type: 'postgres',
-  url: process.env.DB_URL,
-  port: 5432,
-  entities: [Property],
-  synchronize: true,
-  // autoLoadEntities: true,
+    type: 'postgres',
+    url: process.env.DB_URL,
+    entities: [Property , PropertyFeature , User , PropertyType],
+    synchronize: false,
 };

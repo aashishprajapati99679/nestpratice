@@ -8,13 +8,13 @@ export class Property {
     @PrimaryGeneratedColumn()
     id : number;
 
-    @Column()
+    @Column( {type: 'varchar', length: 255} )
     name : string;
 
-    @Column()
+    @Column( {type: 'text'} )
     description : string;
 
-    @Column({default : 0})
+    @Column({type: 'numeric', precision: 10, scale: 2, default: 0})
     price : number;
 
     @OneToOne(() => PropertyFeature , (propertyFeature) => propertyFeature.property , {cascade : true})

@@ -5,6 +5,6 @@ export class PropertyType {
     @PrimaryGeneratedColumn()
     id : number;
 
-    @Column()
+    @Column({type: 'varchar', length: 255})
     value : string;
 }

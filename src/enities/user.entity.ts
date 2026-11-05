@@ -6,16 +6,16 @@ export class User {
     @PrimaryGeneratedColumn()
     id : number;
 
-    @Column()
+    @Column({type: 'varchar', length: 255})
     firstName : string;
 
-    @Column()
+    @Column({type: 'varchar', length: 255})
     lastName : string;
 
-    @Column()
+    @Column({type: 'varchar', length: 255})
     avatarUrl : string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type : 'timestamp'})
     createdAt : Date;
 
     @OneToMany(()=> Property , (property) => property.user)

@@ -3,28 +3,28 @@ import { Property } from "./property.entity.js";
 
 @Entity()
 export class PropertyFeature {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({})
     id : number;
 
-    @Column()
+    @Column({ type: "int" })
     bedrooms : number;
     
-    @Column()
+    @Column({ type: "int" })
     bathrooms : number;
 
-    @Column()
+    @Column({ type: "int" })
     parkingSpots : number;
 
-    @Column()
+    @Column({ type: "numeric", precision: 10, scale: 2 })
     area : number;
 
-    @Column()
+    @Column({ type: "boolean" })
     hasSwimmingPool : boolean;
 
-    @Column()
+    @Column({ type: "boolean" })
     hasGarden : boolean;
 
-    @Column()
+    @Column({ type: "boolean" })
     hasBalcony : boolean;
 
     @OneToOne(()=> Property  , (property) => property.propertyFeature)
